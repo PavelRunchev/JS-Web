@@ -1,0 +1,8 @@
+<h1>Create a car</h1>
+<form method="post" action="/users/createCar">
+    <input name="make" placeholder="enter make" {{#if make}} value={{make}} {{/if}}/>
+    <input name="model" placeholder="enter model" {{#if model}} value={{model}} {{/if}}/>
+    <input name="imageUrl" placeholder="enter image url" {{#if imageUrl}} value={{imageUrl}} {{/if}}/>
+    <input name="color", placeholder="enter color (optional)" {{#if color}} value={{color}} {{/if}}/>
+    <input id="submit" type="submit" value="CREATE" />
+</form>

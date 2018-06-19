@@ -1,0 +1,20 @@
+{
+  "name": "mongoplayground",
+  "version": "1.0.0",
+  "description": "Exercises",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PavelRunchev"
+  },
+  "author": "RAIDERS",
+  "license": "MIT",
+  "dependencies": {
+    "formidable": "1.2.1",
+    "mongodb": "3.0.10",
+    "mongoose": "5.1.3"
+  }
+}

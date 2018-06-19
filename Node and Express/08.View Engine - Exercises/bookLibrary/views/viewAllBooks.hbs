@@ -1,0 +1,11 @@
+ <h1>Here are your books</h1>
+ <h2>Your books is: {{count}}</h2>
+    <div class="container">
+        {{#each books}}
+        <div class="book">
+            <p>{{title}}</p>
+            <p>By: {{author}}</p>
+            <a href="/details/{{_id}}"><img class="bookPoster" src="{{image}}" /></a>
+        </div>
+        {{/each}}
+    </div>

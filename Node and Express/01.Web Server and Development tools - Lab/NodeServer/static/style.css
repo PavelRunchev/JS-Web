@@ -1,0 +1,21 @@
+body {
+    background-color: lightgray;
+}
+
+header {
+    color: rgb(9, 9, 139);
+}
+
+h1 {
+    color: rgb(22, 113, 150)
+}
+
+footer {
+    color: rgb(9, 9, 139);
+    height: 50%;
+}
+
+button {
+    background-color: darkgray;
+}
+

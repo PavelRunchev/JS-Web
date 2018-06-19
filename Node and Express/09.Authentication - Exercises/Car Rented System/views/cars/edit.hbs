@@ -1,0 +1,11 @@
+
+{{#if currentUser.isAdmin}}
+<h1>Edit a Car</h1>
+<form method="post" action="/edit/{{id}}">
+    <input name="make" placeholder="enter make" {{#if make}} value={{make}} {{/if}}/>
+    <input name="model" placeholder="enter model" {{#if model}} value={{model}} {{/if}}/>
+    <input name="imageUrl" placeholder="enter image url" {{#if imageUrl}} value={{imageUrl}} {{/if}}/>
+    <input name="color", placeholder="enter color (optional)" {{#if color}} value={{color}} {{/if}}/>
+    <input id="submit" type="submit" value="EDIT" />
+</form>
+{{/if}}

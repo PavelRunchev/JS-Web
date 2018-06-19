@@ -1,0 +1,12 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Demo server on Node",
+  "main": "server.js",
+  "scripts": {
+    
+  },
+  "keywords": [],
+  "author": "raiders",
+  "license": "MIT"
+}

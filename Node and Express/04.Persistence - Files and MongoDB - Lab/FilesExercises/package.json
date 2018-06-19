@@ -1,0 +1,12 @@
+{
+  "name": "filesystem",
+  "version": "1.0.0",
+  "description": "fs module from Node.js",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "debug": "node --nolazy --inspect-brk=9998 server.js"
+  },
+  "author": "RAIDERS",
+  "license": "MIT"
+}

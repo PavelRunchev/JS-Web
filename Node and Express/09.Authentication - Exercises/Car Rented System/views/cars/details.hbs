@@ -1,0 +1,23 @@
+<div class="car-details" >
+        <section>
+                        <img src="{{imageUrl}}" alt='car-image' />    
+                    </a>           
+                </section>
+                <section class="info">
+                    <strong>{{this.make}} : {{this.model}}</strong>
+                    <br><strong>color: {{this.color}}</strong></br>               
+                    <br><strong>rented: {{this.rented}}</strong></br>
+                    <br><strong>Published: {{this.published}}</strong></br>
+                    {{#if currentUser.isAdmin}}
+                        <form method="post" action="/cars/edit/{{this._id}}">
+                            <br><button>Edit Car</button></br>
+                        </form>                
+                    {{else}}
+                        <form method="post" action="/cars/rent/{{this._id}}">
+                            <br><strong>Please input days of car rented</strong></br>
+                            <input type="number" name="days" placeholder=""/><br>
+                            <button type="submit" value="submit" >Rent Me</button>
+                        </form>
+                   {{/if}}
+                </section>        
+</div>

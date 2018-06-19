@@ -1,0 +1,22 @@
+{
+  "name": "moviedb",
+  "version": "1.0.0",
+  "description": "Node.js Web Server Exercises - Movie DB Server",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "debug": "node --nolazy --inspect-brk=9998 server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PavelRunchev"
+  },
+  "author": "RAIDERS",
+  "license": "MIT",
+  "dependencies": {
+    "formidable": "^1.2.1",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.9.4",
+    "gulp-image": "^4.3.0"
+  }
+}
