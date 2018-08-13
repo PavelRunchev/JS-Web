@@ -1,0 +1,11 @@
+.focusDiv {
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    margin: 16px;
+    border:  2px solid gray;
+}
+
+.active {
+    background: #0a5bb8;
+}

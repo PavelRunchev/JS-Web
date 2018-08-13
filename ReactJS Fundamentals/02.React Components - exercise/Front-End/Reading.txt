@@ -1,0 +1,4 @@
+1. install react
+2. replace folders in react
+3. npm start
+4. tested application...

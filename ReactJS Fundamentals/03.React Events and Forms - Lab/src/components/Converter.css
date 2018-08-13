@@ -1,0 +1,11 @@
+.converter {
+    width: 250px;
+    height: 100px;
+    display: inline-block;
+    margin: 8px;
+    border:  4px solid gray;
+}
+
+.USD {
+    border-bottom: 4px;
+}

@@ -1,0 +1,14 @@
+nav a {
+    display: inline-block;
+    margin: 0.25em 0.5em;
+    border: 1px solid blue;
+    padding: 0.25em 0.5em;
+    text-decoration: none;
+    color: black;
+}
+
+.activeLink {
+    background: grey;
+    color: white;
+    cursor: default;
+}

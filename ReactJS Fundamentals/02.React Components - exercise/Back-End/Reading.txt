@@ -1,0 +1,5 @@
+1. install packed library ("express": "^4.16.2", "cors": "^2.8.4")
+2. node index (directory in server!!!)
+
+//started
+9999
