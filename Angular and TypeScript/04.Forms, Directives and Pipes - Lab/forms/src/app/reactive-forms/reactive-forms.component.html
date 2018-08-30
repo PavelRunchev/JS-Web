@@ -1,0 +1,23 @@
+
+<form class="forms" [formGroup]="form" (ngSubmit)="log()">
+    <h1>Reactive Form</h1>
+    <div class="form-group">
+      <label for="">Current Password</label>
+      <input type="password" formControlName="currentPass"  id="currentPass" class="form-control"  placeholder="current password">
+      <div *ngIf="form.get('currentPass').touched && form.get('currentPass').invalid">
+          <div *ngIf="form.get('currentPass').errors.required">Password field is required</div>
+          <div *ngIf="form.get('currentPass').errors.minLength">Password must be 3 symbols</div>
+      </div>
+      
+    </div>
+    <div class="form-group">
+      <label for="">New Password</label>
+      <input type="password" formControlName="newPass" id="newPass" class="form-control" placeholder="Password">
+    </div>
+    <div class="form-group">
+        <label for="">Confirm Password</label>
+        <input type="password" formControlName="confirmPass" id="confirmPass" class="form-control" placeholder="confirm Password">
+      </div>
+  
+    <button  type="submit" class="btn btn-primary">Submit</button>
+  </form>

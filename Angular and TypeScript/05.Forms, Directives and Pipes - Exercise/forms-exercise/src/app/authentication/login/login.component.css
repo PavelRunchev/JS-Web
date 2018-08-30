@@ -1,0 +1,10 @@
+.container {
+    background-color: rgb(207, 207, 207);
+    padding-top: 10%;
+    padding-bottom: 3%;
+    height: 800px;
+}
+
+label {
+    color: black;
+}

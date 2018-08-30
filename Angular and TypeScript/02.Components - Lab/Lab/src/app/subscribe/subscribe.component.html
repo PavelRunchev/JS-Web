@@ -1,0 +1,10 @@
+
+<button (click)="showSubscribtion()" class="button"> Show Image </button>
+<div *ngIf="isClicked" class="subGame">
+    <p>Release Date: {{subGame && subGame.date.toLocaleDateString()}}</p>
+    <img  src="{{subGame?.image}}" width="200" height="200" alt="picture">
+    <p>{{subGame && subGame.content}}</p>
+</div>
+
+
+

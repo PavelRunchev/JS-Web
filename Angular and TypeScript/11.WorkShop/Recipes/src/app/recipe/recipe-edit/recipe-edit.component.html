@@ -1,0 +1,57 @@
+<div *ngIf="bindingModel">
+  <div class="row">
+    <div class="col-xs-12">
+      <form #f="ngForm" (ngSubmit)="edit()" >
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input
+                required
+                type="text"
+                id="name"
+                [(ngModel)]="bindingModel.name"
+                name="name"
+                class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="form-group">
+              <label for="imagePath">Image URL</label>
+              <input
+                required
+                type="text"
+                id="imagePath"
+                [(ngModel)]="bindingModel.imagePath"
+                name="imagePath"
+                class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <img src="{{bindingModel.imagePath}}" class="img-responsive">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="form-group">
+              <textarea
+                required
+                type="text"
+                id="description"
+                class="form-control"
+                [(ngModel)]="bindingModel.description"
+                name="description"
+                rows="6"></textarea>
+            </div>
+          </div>
+        </div>
+       <button class="btn btn-primary" [disabled]="f.invalid" type="submit">Edit</button>
+      </form>
+    </div>
+  </div>
+  
+</div>

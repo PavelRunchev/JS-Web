@@ -1,0 +1,39 @@
+<div class="detailsGame">
+  <input #id placeholder="id of game">
+  <button (click)="showName(id.value)"> Search Game </button>
+  <div *ngIf="isSearchGame" class="searchGame">
+      <h1>{{isSearchGame && isSearchGame.title}}</h1>
+      <br>
+      <h5>with id: {{isSearchGame && isSearchGame.id}}</h5>
+      <br>
+      <h5>release date: {{isSearchGame && isSearchGame.date.toLocaleDateString()}}</h5>
+      <br>
+      <img src="{{isSearchGame && isSearchGame.image}}" width="650" height="650" alt="picture">
+      <p>{{isSearchGame && isSearchGame.content}}</p>
+  </div>
+</div>
+
+<div class="twoBinding">
+  <p>input game to show!</p>
+  <input  [(ngModel)]="username" placeholder="your game">
+  <h1 *ngIf="username">Your game is: {{username | titlecase}}</h1>
+</div>
+
+<div *ngIf="games" class="game">
+  <ul>
+    <li *ngFor="let game of games">
+      <h1 class="myStyle">{{game.title | titlecase}}</h1>
+      <br>
+      <h5>with id: {{game && game.id}}</h5>
+      <br>
+      
+      <app-subscribe (notification)="notifyMe($event)" [subGame]="game"> </app-subscribe>
+    </li>
+
+  </ul>
+  
+</div>
+
+<div *ngIf="isShown">
+    our Shown
+</div>

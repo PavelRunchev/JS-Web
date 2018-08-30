@@ -1,0 +1,16 @@
+.forms {
+    text-align: center;
+    background-color: grey;
+    margin-top: 2%;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+
+}
+
+.form-control {
+    width: 400px;
+    margin: auto;
+
+}

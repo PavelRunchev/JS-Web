@@ -1,0 +1,19 @@
+<form class="forms" #form="ngForm" (ngSubmit)="login(form.value)">
+    <h1>Driven Form</h1>
+    <div class="form-group">
+        <label for="">Processor</label>
+        <input type="text" class="form-control" (click)="field(emailField)" [(ngModel)]="model.processor" name="processor">
+      </div>
+  <div class="form-group">
+    <label for="">Email address</label>
+    <input type="email" class="form-control" placeholder="your email" (click)="field(emailField)" minlength="3" #emailField="ngModel" name="email" ngModel required>
+   
+ 
+  </div>
+  <div class="form-group">
+    <label for="">Password</label>
+    <input type="password" placeholder="your password" class="form-control" name="pasword" ngModel>
+  </div>
+
+  <button  type="submit" class="btn btn-primary">Submit</button>
+</form>

@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>Login Form</h1>
+  <form class="login" #loginForm="ngForm" (ngSubmit)="login()">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" id="username" 
+      required
+      [(ngModel)]="model.username"
+      name="username"
+      #username="ngModel">
+      <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
+        Username is required!
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" 
+      required
+      [(ngModel)]="model.password"
+      name="password"
+      #password="ngModel">
+      <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+        Password is required!
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success">Login</button>
+  </form>
+  <div *ngIf="loginFailed" class="alert alert-danger">
+    <strong style="color: red">{{errorMessage}}</strong>
+  </div>
+</div>
