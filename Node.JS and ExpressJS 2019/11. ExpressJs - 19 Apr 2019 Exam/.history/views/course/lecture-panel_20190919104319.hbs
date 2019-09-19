@@ -1,0 +1,30 @@
+<form class="text-center border border-light p-5" action="/course/course-addLecture/{{_id}}" method="POST">
+    <h1>Add lecture to course Express</h1>
+
+    <div class="form-group">
+        <label for="title">Lecture Title</label>
+        <input type="text" class="form-control" placeholder="Lecture title" name="lectureTitle" value="{{lectureTitle}}">
+    </div>
+    <div class="form-group">
+        <label for="videoUrl">Video Url</label>
+        <input type="text" class="form-control" placeholder="Video Url" name="videoUrl" value="videoUrl">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<h2 class="text-center">There are {{lecturesCount}} lectures in this course</h2>
+
+<ul class="list-group">
+    {{#each lectures}}
+        <li class="list-group-item">
+            <h5 class="mb-1">{{title}}</h5>
+            <span class="float-right">
+                <a href="/lecture/lecture-delete/{{_id}}"><button class="btn btn-danger">Delete</button></a>
+
+            </span>
+        </li>
+    {{else}}
+        <h5 class="text-center">No lectures this course!</h5>
+    {{/each}}
+</ul>

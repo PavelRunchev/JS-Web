@@ -1,0 +1,30 @@
+<h1>Welcome to SoftUni Wiki!</h1>
+<div class="spacer">
+    <h2>{{edit.title}}
+        {{#if currentUser}}
+            <div class="controls">
+                {{#if edit.article.isLocked}}
+                    {{#if isAdmin}}
+                        <a href="/article/delete/{{edit.articleId}}" class="deleteArticle">[delete]</a>
+                        <a href="/article/edit/{{edit.articleId}}" class="editArticle">[edit]</a>
+                    {{/if}}
+                {{else}}
+                    {{#if isAdmin}}
+                        <a href="/article/delete/{{edit.articleId}}" class="deleteArticle">[delete]</a>
+                    {{/if}}
+                    <a href="/article/edit/{{edit.articleId}}" class="editArticle">[edit]</a>
+                {{/if}}
+                <a href="/edit/history/{{edit.articleId}}" >[history]</a>
+            </div>
+        {{/if}}
+    </h2>
+    <article>
+        {{#each splitedContent}}
+            </P>
+                <br>
+                {{this}}
+                <br>
+            <p>
+        {{/each}}
+    </article>
+</div>

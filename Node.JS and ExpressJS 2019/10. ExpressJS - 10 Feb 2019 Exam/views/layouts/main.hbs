@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Projects Manager</title>
+    <link href="/css/site.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <ul>
+            <li><a href="/">Home</a></li>
+            {{#if isAdmin}}
+                <li><a href="/project/projects-admin">Projects</a></li>
+                <li><a href="/team/teams-admin">Teams</a></li>
+                <li><a href="/team/create">Create Team</a></li>
+                <li><a href="/project/create">Create Project</a></li>
+            {{else}}
+                <li><a href="/project/projects-user">Projects</a></li>
+                <li><a href="/team/teams-user">Teams</a></li>
+            {{/if}}
+            
+            <div class="right">
+                {{#if isAuthed}}
+                {{#if isAdmin}}
+                <li>Welcome, Admin!</li>
+                {{else}}
+                <li>Welcome, {{currentUser.username}}!</li>
+                {{/if}}
+                <li><a href="/user/profile">Profile</a></li>
+                <li>
+                    <form id="logout-form" action="/user/logout" method="post"></form>
+                    <a href="javascript:document.getElementById('logout-form').submit()">Logout</a>
+                </li>
+                {{else}}
+                <li><a href="/user/login">Login</a></li>
+                <li><a href="/user/register">Register</a></li>
+                {{/if}}
+            </div>
+        </ul>
+    </header>
+    <main>
+            {{#if globalError}}
+                <span style="color: red; margin: 1% auto; display: block; text-align: center">{{globalError}}</span>
+            {{/if}}
+
+            {{{body}}}
+    </main>
+    <footer>
+        Express Exam @SoftUni
+    </footer>
+</body>
+
+</html>

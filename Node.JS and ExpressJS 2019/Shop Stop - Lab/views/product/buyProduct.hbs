@@ -1,0 +1,25 @@
+<form class="form center-form" method="POST">
+  <h2>Buy Product</h2>
+  <div class="form-group">
+    <label class="product-card"></label>
+    <img class="product-img" src="{{image}}">
+  </div>
+
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input id="name" name="name" type="text" class="input-field" value="{{name}}" disabled />
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea rows="8" id="description" name="description" type="text" class="input-field" disabled>{{description}}</textarea>
+  </div>
+  <div class="form-group">
+    <label for="price">Price</label>
+    <input id="price" name="price" type="number" step="0.01" class="input-field" value="{{price}}" disabled />
+  </div>
+
+  <div class="form-group">
+    <input class="btn form-btn btn-success" type="submit" value="Buy">
+  </div>
+</form>

@@ -1,0 +1,37 @@
+<div class="container">
+    <h1 class="my-4">Course title : {{title}}
+    </h1>
+
+    <div class="row">
+        <div class="col-md-8">
+            <img class="img-fluid" src="{{imageUrl}}" alt="Express" />
+        </div>
+        <div class="col-md-4 text-center">
+            <h3 class="my-3">Course Description</h3>
+            <p>{{description}}</p>
+            {{#if isEnrolled}}
+                <span class="badge badge-pill badge-success">enrolled</span>
+            {{else}}
+                <span class="badge badge-pill badge-success">enroll</span>
+            {{/if}}
+        </div>
+    </div>
+        {{#if isEnrolled}}
+            <h3 class="text-center">Lectures List</h3>
+
+            <ul class="list-group">
+                {{#each lectures}}
+                    <li class="list-group-item">
+                        <h5 class="mb-1">Conrollers</h5>
+                        <span class="float-right">
+                            <a href="#"><button class="btn btn-secondary">Play</button></a>
+                        </span>
+                    </li>
+                {{else}}
+                    <h2>No lectures in those course!</h2>
+                {{/each}}
+            </ul>
+        {{else}}
+            <h4 class="text-center">To get full access please enroll the course</h4>
+        {{/if}}
+</div>

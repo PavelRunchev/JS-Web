@@ -1,0 +1,23 @@
+<h1>Teams</h1>
+<h3>Manage Users</h3>
+<div class="form">
+  <form action="" method="POST">
+    <label>User</label>
+    <select name="member">
+      {{#each users}}
+      <option value="{{_id}}">{{username}}</option>
+      {{else}}
+        <option>No users assigned!</option>
+      {{/each}}
+    </select>
+    <label>Team</label>
+    <select name="team">
+      {{#each teams}}
+      <option value="{{_id}}">{{name}}</option>
+      {{else}}
+        <option>No teams assigned!</option>
+      {{/each}}
+    </select>
+    <input type="submit" value="Distribute">
+  </form>
+</div>

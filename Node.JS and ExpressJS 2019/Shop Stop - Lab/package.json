@@ -1,0 +1,30 @@
+{
+    "name": "shop-stop",
+    "version": "1.0.0",
+    "description": "lab",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "raiders",
+    "license": "MIT",
+    "dependencies": {
+        "babel-eslint": "^10.0.3",
+        "body-parser": "^1.19.0",
+        "cookie-parser": "^1.4.4",
+        "crypto": "^1.0.1",
+        "express": "^4.17.1",
+        "express-fileupload": "^1.1.6-alpha.3",
+        "express-flash-2": "^1.0.1",
+        "express-handlebars": "^3.1.0",
+        "express-jquery": "^1.8.3",
+        "express-session": "^1.16.2",
+        "image-downloader": "^3.5.0",
+        "mongodb": "^3.3.2",
+        "mongoose": "^5.4.1",
+        "nodemon": "^1.19.2",
+        "passport": "^0.4.0",
+        "passport-local": "^1.0.0",
+        "shortid": "^2.2.15"
+    }
+}

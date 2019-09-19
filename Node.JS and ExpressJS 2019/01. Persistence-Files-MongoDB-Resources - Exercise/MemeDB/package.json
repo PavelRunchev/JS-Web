@@ -1,0 +1,21 @@
+{
+  "name": "memedb",
+  "version": "1.0.0",
+  "description": "Exercises",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "raiders",
+  "license": "ISC",
+  "dependencies": {
+    "formidable": "^1.2.1",
+    "gulp": "^4.0.2",
+    "gulp-image": "^5.1.0",
+    "gulp-imagemin": "^6.1.0",
+    "gulp-uglify": "^3.0.2",
+    "image-downloader": "^3.4.2",
+    "nodemon": "^1.19.1",
+    "shortid": "^2.2.14"
+  }
+}

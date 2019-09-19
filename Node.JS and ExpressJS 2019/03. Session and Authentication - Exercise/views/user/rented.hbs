@@ -1,0 +1,20 @@
+<table>
+    <thead>
+        <tr>
+            <th>Model</th>
+            <th>Price Per Day</th>
+            <th>Rent Expires</th>
+            <th>Remove Rent</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each cars}}
+        <tr>
+            <td>{{model}}</td>
+            <td>{{pricePerDay}} &euro;</td>
+            <td>{{expiresOn}} Days</td>
+            <td><a href="/user/rents/{{_id}}">Remove</a></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

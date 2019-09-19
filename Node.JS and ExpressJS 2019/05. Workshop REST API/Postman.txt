@@ -1,0 +1,90 @@
+
+signIn: 
+method: POST
+url: http://localhost:3000/auth/signin
+Header: Content-Type: application/json
+Body: {
+"email": "setty_ii@abv.bg",
+"pssword": "123567"
+}
+
+for signUp is both added is "name": "...."
+
+----------------------------------------
+
+createPost:
+Method: POST
+url: http://localhost:3000/feed/post/create
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNldHR5X2lpQGFidi5iZyIsInVzZXJJZCI6IjVkNjc3NzFjMWQ5MzYxMmQyNDllODg1YSIsImlhdCI6MTU2NzA5NTc0OSwiZXhwIjoxNTY3MDk5MzQ5fQ.Y2BGNJJv8-JGctd6ZI7AFn0xHBO5_iJclyMIGQ7ZfK8
+Headers: Authorization: 'Bearer token',
+         Content-Type: application/json
+
+body: {
+"title": "NuSTAR Probes Black Hole Jet Mystery",
+"content": "Black holes are famous for being ravenous eaters, but they do not eat everything that falls toward them. A small portion of material gets shot back out in powerful jets of hot gas, called plasma, that can wreak havoc on their surroundings. Along the way, this plasma somehow gets energized enough to strongly radiate light, forming two bright columns along the black hole’s axis of rotation. Scientists have long debated where and how this happens in the jet.",
+
+"creator": "5d67771c1d93612d249e885a"
+}
+
+---------------------------------------------
+
+DeletePost:
+Method: DELETE
+url: http://localhost:3000/feed/post/delete/5d68072fd6b1a95434caa853
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNldHR5X2lpQGFidi5iZyIsInVzZXJJZCI6IjVkNjc3NzFjMWQ5MzYxMmQyNDllODg1YSIsImlhdCI6MTU2NzA5NTc0OSwiZXhwIjoxNTY3MDk5MzQ5fQ.Y2BGNJJv8-JGctd6ZI7AFn0xHBO5_iJclyMIGQ7ZfK8
+Headers: Authorization: 'Bearer token',
+         Content-Type: application/json
+
+Without body!!!
+
+Successfuly: "message": "Post deleted successfully!"
+----------------------------------------------------
+
+GetPostById:
+Method: GET
+url: http://localhost:3000/feed/post/5d6807eed6b1a95434caa856
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNldHR5X2lpQGFidi5iZyIsInVzZXJJZCI6IjVkNjc3NzFjMWQ5MzYxMmQyNDllODg1YSIsImlhdCI6MTU2NzA5NTc0OSwiZXhwIjoxNTY3MDk5MzQ5fQ.Y2BGNJJv8-JGctd6ZI7AFn0xHBO5_iJclyMIGQ7ZfK8
+Headers: Authorization: 'Bearer token',
+         Content-Type: application/json
+
+Without body!!!
+Successfuly:
+{
+    "message": "Post fetched.",
+    "post": {
+        "_id": "5d6807eed6b1a95434caa856",
+        "title": "NuSTAR Probes Black Hole Jet Mystery",
+        "content": "Black holes are famous for being ravenous eaters, but they do not eat everything that falls toward them. A small portion of material gets shot back out in powerful jets of hot gas, called plasma, that can wreak havoc on their surroundings. Along the way, this plasma somehow gets energized enough to strongly radiate light, forming two bright columns along the black hole’s axis of rotation. Scientists have long debated where and how this happens in the jet.",
+        "creator": "5d67771c1d93612d249e885a",
+        "__v": 0
+    }
+}
+
+------------------------------------------------------
+
+UpdatePost:
+Method: PUT
+url: http://localhost:3000/feed/post/update/5d6807eed6b1a95434caa856
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNldHR5X2lpQGFidi5iZyIsInVzZXJJZCI6IjVkNjc3NzFjMWQ5MzYxMmQyNDllODg1YSIsImlhdCI6MTU2NzA5NTc0OSwiZXhwIjoxNTY3MDk5MzQ5fQ.Y2BGNJJv8-JGctd6ZI7AFn0xHBO5_iJclyMIGQ7ZfK8
+Headers: Authorization: 'Bearer token',
+         Content-Type: application/json
+Body {
+	"title": "NuSTAR",
+	"content": "Black holes are famous for being ravenous eaters, but they do not eat everything that falls toward them. A small portion of material gets shot back out in powerful jets of hot gas, called plasma, that can wreak havoc on their surroundings. Along the way, this plasma somehow gets energized enough to strongly radiate light, forming two bright columns along the black hole’s axis of rotation. Scientists have long debated where and how this happens in the jet."
+}
+
+Successfuly:
+{
+    "message": "Post updated!",
+    "post": {
+        "_id": "5d6807eed6b1a95434caa856",
+        "title": "NuSTAR",
+        "content": "Black holes are famous for being ravenous eaters, but they do not eat everything that falls toward them. A small portion of material gets shot back out in powerful jets of hot gas, called plasma, that can wreak havoc on their surroundings. Along the way, this plasma somehow gets energized enough to strongly radiate light, forming two bright columns along the black hole’s axis of rotation. Scientists have long debated where and how this happens in the jet.",
+        "creator": "5d67771c1d93612d249e885a",
+        "__v": 0
+    }
+}
+
+------------------------------------------------------
+
+

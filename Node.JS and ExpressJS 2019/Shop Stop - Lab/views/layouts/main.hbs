@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ShopStop</title>
+
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   
+    <link rel="stylesheet" type="text/css" href="/styles/site.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            
+            <ul class="nav navbar-nav">
+                <li><a class="avtive" href="/">Home Page</a></li>
+                {{#if isAuthed}}
+                    <li><a href="/product/product-create">Add Product</a></li>
+                    {{#if isAdmin}}
+                    <li><a href="/category/category-create">Add Category</a></li>
+                    {{/if}}
+                    <li class="align-left"><span class="fab fa-js-square"></span></li>
+                    <li class="align-right">Welcome 
+                        {{#if isAdmin}}
+                            <span>admin</span>
+                        {{/if}}
+
+                        {{user.username}}!</li>
+                    <li class="align-right">
+                        <form id="logout-form" method="POST" action="/user/logout">
+                            <a href="javascript:document.getElementById('logout-form').submit()">Logout</a>
+                        </form>
+                    </li>
+                {{else}}
+                    <li class="align-right"><a href="/user/login">Login</a></li>
+                    <li class="align-right"><a href="/user/register">Register</a></li>
+                {{/if}}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {{#if globalError}}
+            <h2 class="error-msg">{{globalError}}</h2>
+        {{/if}}
+
+        {{#if flash}}
+            {{#if flash.info}}
+                <h2 class="info-msg">{{flash.info}}</h2>
+            {{/if}}
+            {{#if flash.success}}
+                <h2 class="success-msg">{{flash.success}}</h2>
+            {{/if}}
+            {{#if flash.warning}}
+                <h2 class="warning-msg">{{flash.warning}}</h2>
+            {{/if}}
+            {{#if flash.danger}}
+                <h2 class="danger-msg">{{flash.danger}}</h2>
+            {{/if}}
+        {{/if}}
+          
+
+       {{{body}}}
+    </main>
+    <footer>
+        <p> &copy; 2018 ShopStop - All Rights Reserved! <i class="fab fa-node-js"></i></p>
+    </footer>
+</body>
+
+</html>

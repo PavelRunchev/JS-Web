@@ -1,0 +1,10 @@
+const mongoose = require('mongoose');
+
+const tagsSchema = new mongoose.Schema({
+    name: { type: mongoose.SchemaTypes.String, required: true },
+    creationDate: { type: mongoose.SchemaTypes.Date, default: Date.now() },
+    images: [{ type: mongoose.SchemaTypes.ObjectId, ref:"Image" }]
+
+});
+
+module.exports = mongoose.model('Tag', tagsSchema);
