@@ -125,5 +125,20 @@ module.exports = {
                 res.redirect(`/course/course-addLecture/${course._id}`);
             });
         }).catch(err => errorHandler(req, res, err, 'course/lecture-panel'));
+    },
+
+    courseSearch: (req, res) => {
+        const { title } = req.body;
+
+        if (!title.length) {
+            res.locals.globalError = 'Cannot searched empty field!';
+            res.render('/');
+            return;
+        }
+
+        Course.find({ isPublic: true }).then((courses) => {
+            courses = courses.filter(c => c.title.toLowerCase().includes(title.toLowerCase()));
+            res.render('home/index', { courses });
+        }).catch(err => errorHandler(req, res, err, '/'));
     }
 };

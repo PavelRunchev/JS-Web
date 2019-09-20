@@ -28,6 +28,7 @@ module.exports = app => {
     app.post('/course/course-enroll/:id', auth.isAuthed, controllers.course.courseEnroll);
     app.get('/lecture/lecture-video/:id', auth.isAuthed, controllers.lecture.lectureVideo);
     app.post('/user/logout', auth.isAuthed, controllers.user.logout);
+    app.post('/course/course-search', auth.isAuthed, controllers.course.courseSearch);
 
     app.all('*', controllers.home.pageNotFound);
 };
