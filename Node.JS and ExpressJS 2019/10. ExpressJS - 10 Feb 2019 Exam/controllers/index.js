@@ -1,11 +1,11 @@
 const home = require('./home-controller');
 const user = require('./user-controller');
-const project = require('./project-controllers');
-const team = require('./team-controllers');
+const team =  require('./team-controller');
+const project = require('./project-controller');
 
 module.exports = {
     home,
     user,
-    project,
-    team
-};
+    team,
+    project
+}

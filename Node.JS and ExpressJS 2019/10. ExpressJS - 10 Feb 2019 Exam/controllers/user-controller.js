@@ -1,117 +1,165 @@
-const encryption = require('../util/encryption');
+const bcrypt = require('bcryptjs');
+const saltRounds = 10;
+
 const User = require('mongoose').model('User');
 const Team = require('../models/Team');
-const errorHandler = require('../config/errorHandler');
+const { validationResult } = require('express-validator');
+const { createToken } = require('../util/jwt');
+const { authCookieName } = require('../util/app-config');
+const { encryptCookie } = require('../util/encryptCookie');
+
+function validateUser(req, res) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        res.locals.globalError = errors.errors[0]['msg'];
+        const user = req.body;
+        res.render('user/register', { user });
+        return false;
+    }
+
+    return true;
+}
 
 module.exports = {
     registerGet: (req, res) => {
-        res.render('users/register');
+        const user = req.body;
+        res.status(200).render('user/register', { user });
     },
-    registerPost: async(req, res) => {
-        const reqUser = req.body;
 
-        if (!reqUser.username.length || !reqUser.password.length ||
-            !reqUser.firstName.length || !reqUser.lastName.length ||
-            !reqUser.profilePicture.length) {
-            res.locals.globalError = 'Fields cannot be empty!';
-            res.render('users/register', req.body);
-            return;
-        }
-
-        // if (reqUser.password !== reqUser.repeatPassword) {
-        //     res.locals.globalError = 'Passwords is mathes!';
-        //     res.render('users/register', req.body);
-        //     return;
-        // }
-
-        const salt = encryption.generateSalt();
-        const hashedPass =
-            encryption.generateHashedPassword(salt, reqUser.password);
+    registerPost: (req, res, next) => {
         try {
-            const user = await User.create({
-                username: reqUser.username,
-                hashedPass,
-                salt,
-                firstName: reqUser.firstName,
-                lastName: reqUser.lastName,
-                teams: [],
-                profilePicture: reqUser.profilePicture,
-                roles: ['User']
-            });
-            req.logIn(user, (err, user) => {
-                if (err) {
-                    errorHandler(req, res, err, 'users/register');
-                } else {
-                    res.redirect('/');
-                }
-            });
-        } catch (e) {
-            errorHandler(req, res, e, 'users/register');
-        }
+            const { username, password, firstName, lastName, profilePicture } = req.body;
+
+            if (validateUser(req, res)) {
+                // saving default profile image to registration
+                bcrypt.genSalt(saltRounds)
+                    .then((salt) => {
+                        return Promise.all([salt, bcrypt.hash(password, salt)]);
+                    }).then(([salt, hashPassword]) => {
+                        // register user!
+                        return Promise.resolve(User.create({
+                            username, hashedPass: hashPassword, salt, firstName, 
+                            lastName, teams: [], roles: ['User'],
+                            profilePicture
+                        }));
+                    }).then((user) => {
+                        // Saving user data to session and cookie
+                        saveingToSessionAndCookie(req, res, user);
+                        res.flash('success', 'You registered successfully!');
+                        res.status(301).redirect('/');
+                    }).catch(next);
+            }
+        } catch (next) { }
     },
+
     logout: (req, res) => {
-        req.logout();
-        res.redirect('/');
+            res.flash('info', 'Logout successfully!');
+            // clear cookie and redirect to home page and watch message!
+            res.clearCookie(authCookieName);
+            res.clearCookie('_ro_le_');
+            res.clearCookie('_u_i%d%_');
+            req.cookies = null;
+
+            // destroy session!
+            if (req.session !== undefined) {
+                sessionDestroy(req);
+            }
+
+            res.status(301).redirect('/');
     },
+
     loginGet: (req, res) => {
-        res.render('users/login');
+            res.status(200).render('user/login');
     },
-    loginPost: async(req, res) => {
-        const reqUser = req.body;
+
+    //todo
+    loginPost: async (req, res, next) => {
         try {
-            const user = await User.findOne({ username: reqUser.username });
+            const { username, password } = req.body;
+            const user = await User.findOne({ username: username });
+
             if (!user) {
                 res.locals.globalError = 'Invalid user';
-                res.render('users/login', reqUser);
+                res.status(400).render('user/login', req.body);
                 return;
             }
-            if (!user.authenticate(reqUser.password)) {
-                res.locals.globalError = 'Invalid user password';
-                res.render('users/login', reqUser);
+
+            const match = await user.matchPassword(password);
+            if (!match) {
+                res.locals.globalError = 'Invalid password';
+                res.status(400).render('user/login', req.body);
                 return;
             }
-            req.logIn(user, (err, user) => {
-                if (err) {
-                    errorHandler(err);
-                } else {
-                    res.redirect('/');
-                }
-            });
-        } catch (err) {
-            errorHandler(req, res, err, 'users/login');
-        }
-    },
 
-    profile: async(req, res) => {
-        try {
-            if (res.locals.currentUser.id) {
-                const teams = await Team.find({ members: { $all: [res.locals.currentUser.id] } })
-                    .populate('projects');
+            // Saving user data to session and cookie
+            saveingToSessionAndCookie(req, res, user);
 
-                let myProjects = [];
-                for (let t of teams) {
-                    for (let p of t.projects) {
-                        myProjects.push({ name: p.name });
-                    }
-                }
-                res.render('users/profile', { teams, myProjects });
-            }
-        } catch (err) {
-            errorHandler(req, res, err, 'users/login');
-        }
-    },
-
-    // todo tested!!!!!
-    leaveTeam: (req, res) => {
-        const teamId = req.params.id;
-        const userId = req.user.id;
-        console.log(userId);
-        Team.findById(teamId).then((team) => {
-            team.members = team.members.filter(m => m.toString() !== userId.toString());
-            req.user.teams = req.user.teams.filter(t => t.toString() !== teamId.toString());
-            return Promise.all([req.user.save(), team.save()]);
-        }).then(() => {
+            res.flash('info', 'You logged successfully!');
+            res.status(301);
             res.redirect('/');
-        }).catch(err => errorHandler(req, res, err, '/'));
+        } catch (next) { }
+    },
+
+    myProfile: (req, res, next) => {
+        const userId = res.locals.currentUser._id;
+        User.findById(userId)
+        .select('teams profilePicture')
+        .populate('teams', 'name projects')
+        .populate({ path: 'teams', populate: { path: 'projects', select: 'name' }})
+        .then((user) => {
+            user.projects = [];
+            user.teams.forEach(t => {
+                //merge two arrays
+                user.projects = user.projects.concat(t.projects);
+            });
+
+            res.render('user/profile', user);
+        }).catch(err => next(err));
+    },
+
+    leaveTeam: (req, res, next) => {
+        const teamId = req.params.id;
+        const userId = res.locals.currentUser._id;
+        Promise.all([
+            User.findById(userId),
+            Team.findById(teamId)
+        ]).then(([user, team]) => {
+            user.teams.pull(teamId);
+            team.members.pull(userId);
+            return Promise.all([user.save(), team.save()]);
+        }).then(([user, team]) => {
+            res.flash('warning', `${user.username} left successfully the Team!`);
+            res.status(204);
+            res.redirect('/user/myProfile');
+        }).catch(err => next(err));
     }
-};
+}
+
+// executing to login and register
+function saveingToSessionAndCookie(req, res, userObject) {
+    // create new token
+    const token = createToken({ id: userObject.id });
+    //adding to cookie
+    res.cookie(authCookieName, token);
+    res.cookie('_u_i%d%_', encryptCookie(userObject.id));
+
+    if (userObject.roles.includes('Admin')) {
+        res.cookie('_ro_le_', encryptCookie('Admin'));
+    }
+
+    //added to Session cookie!
+    req.session.auth_cookie = token;
+    req.session.user = userObject;
+    req.session.isAdmin = userObject.roles.includes('Admin');
+    req.session.save();
+}
+
+// function for destroy session AFTER watch flash message "Logout successfuly"!!!
+// flash is to the session!
+function sessionDestroy(req) {
+    setTimeout(function () {
+        const sessionId = req.session.id;
+        req.sessionStore.destroy(sessionId);
+        req.session.destroy();
+    }, 5000);
+}

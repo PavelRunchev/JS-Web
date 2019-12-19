@@ -1,1 +1,0 @@
-const Course = require()

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway');
+
 body {
     margin: 0;
     padding: 0;
@@ -11,7 +12,7 @@ div.background {
     right: 0;
     bottom: 0;
     left: 0;
-    background-image: url("../img/background.jpg");
+    background-image: url("../images/background.jpg");
     background-size: cover;
 }
 
@@ -182,7 +183,6 @@ div.profile {
     width: 600px;
     margin: 0 auto;
     justify-content: space-between;
-    overflow: hidden;
 }
 
 div.profile form {
@@ -253,10 +253,4 @@ div.profile-box {
     width: 50%;
     margin: 0 auto;
     height: 400px;
-}
-
-.no-assigned {
-    margin: 3% auto;
-    display: block;
-    text-align: center;
 }

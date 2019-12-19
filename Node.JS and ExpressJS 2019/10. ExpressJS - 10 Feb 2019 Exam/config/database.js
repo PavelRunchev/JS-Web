@@ -8,7 +8,9 @@ const User = require('../models/User');
 module.exports = config => {
     mongoose.connect(config.dbPath, {
         useNewUrlParser: true,
-        useCreateIndex: true
+        useCreateIndex: true,
+        useFindAndModify: false,
+        useUnifiedTopology: true
     });
     const db = mongoose.connection;
     db.once('open', err => {
@@ -16,20 +18,17 @@ module.exports = config => {
         User.seedAdminUser().then(() => {
             console.log('Database ready');
         }).catch((reason) => {
-
             console.log('Something went wrong');
             console.log(reason);
         });
     });
+
     db.on('error', reason => {
         const data = {
             data: new Date().toLocaleString(),
             error: reason,
         };
-        fs.writeFile('../logs/serverErrors.txt', `${JSON.stringify(data)}\n`, { flag: 'a+' }, (err) => {
-            if (err) return console.error(err);
-            console.log('The file has been saved!');
-        });
+
         console.log(reason);
     });
 };

@@ -1,10 +1,15 @@
+
+
 module.exports = {
     index: (req, res) => {
-        res.render('home/index');
+        res.status(200).render('home/index');
+    }, 
+
+    about: (req, res) => {
+        res.status(200).render('home/about');
     },
 
     pageNotFound: (req, res) => {
-        //res.status(404);
-        res.render('error/pageNotFound');
+        res.status(200).render('error/pageNotFound');
     }
-};
+}
