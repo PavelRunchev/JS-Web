@@ -1,0 +1,11 @@
+<h1>Create Team</h1>
+ {{#if globalError}}
+    <p class="text-center global-error">{{globalError}}</p>
+{{/if}}
+<div class="form">
+    <form action="/team/team-create" method="Post">
+        <label>Team Name</label>
+        <input type="text" name="teamName" value="{{teamName}}">
+        <input type="submit" value="Create">
+    </form>
+</div>

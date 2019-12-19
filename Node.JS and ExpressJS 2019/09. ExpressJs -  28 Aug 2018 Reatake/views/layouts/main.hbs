@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Mish Mash</title>
+    <link rel="stylesheet" type="text/css" href="/css/reset-css.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link href="/global-errors/global-errors.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<div class="container-fluid">
+    {{> header}}
+    <main>
+         {{#if flash}}
+            {{#if flash.info}}
+            <h2 class="info-msg">{{flash.info}}</h2>
+            {{/if}}
+            {{#if flash.success}}
+            <h2 class="success-msg">{{flash.success}}</h2>
+            {{/if}}
+            {{#if flash.warning}}
+            <h2 class="warning-msg">{{flash.warning}}</h2>
+            {{/if}}
+            {{#if flash.danger}}
+            <h2 class="danger-msg">{{flash.danger}}</h2>
+            {{/if}}
+        {{/if}}
+
+       {{{body}}}
+    </main>
+    {{> footer}}
+</div>
+</body>
+</html>
+
+
+
+

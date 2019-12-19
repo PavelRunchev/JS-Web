@@ -1,0 +1,13 @@
+<h1>Create Project</h1>
+ {{#if globalError}}
+    <p class="text-center global-error">{{globalError}}</p>
+{{/if}}
+<div class="form">
+    <form action="/project/project-create" method="POST">
+        <label>Project Name</label>
+        <input type="text" name="projectName" value="{{projectName}}">
+        <label>Project Description</label>
+        <textarea name="description">{{description}}</textarea>
+        <input type="submit" value="Create">
+    </form>
+</div>

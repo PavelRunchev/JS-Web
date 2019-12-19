@@ -1,0 +1,15 @@
+{{#if globalError}}
+    <p class="text-center global-error">{{globalError}}</p>
+{{/if}}
+<form class="text-center border border-light p-5" action="/user/login" method="POST">
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" name="username" placeholder="Username" value="{{username}}">
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" class="form-control" placeholder="Password" value="{{password}}">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>

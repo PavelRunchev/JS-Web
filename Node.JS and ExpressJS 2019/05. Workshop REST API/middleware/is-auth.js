@@ -21,4 +21,4 @@ module.exports = (req, res, next) => {
   //append userId for req.userId!!!
   req.userId = decodedToken.userId;
   next();
-}
+};

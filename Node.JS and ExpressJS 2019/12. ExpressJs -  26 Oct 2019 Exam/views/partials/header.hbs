@@ -1,0 +1,23 @@
+<header>
+    <nav>
+        <ul>
+            <li>
+                <a id="home" class="left-floated" href="/">MoneyGone</a>
+            </li>
+        </ul>
+        <ul>
+            {{#if isAuthed}}
+                 <li>
+                    <a class="right-floated" href="/user/account-info">[{{currentUser.username}} profile]</a>
+                </li>
+                <li>
+                    <a class="right-floated" href="/user/logout">Logout</a>
+                </li>
+            {{else}}
+                <li>
+                    <a class="right-floated" href="/user/login">Login</a>
+                </li>
+            {{/if}}
+        </ul>
+    </nav>
+</header>

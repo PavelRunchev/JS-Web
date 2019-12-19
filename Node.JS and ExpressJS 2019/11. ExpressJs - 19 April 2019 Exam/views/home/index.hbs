@@ -1,0 +1,10 @@
+
+{{#if isAuthed}}
+    {{#if isAdmin}}
+        {{> home-admin}}
+    {{else}}
+        {{> home-user}}
+    {{/if}}
+{{else}}
+    {{> home-guest}}
+{{/if}}

@@ -22,6 +22,6 @@ app.use((error, req, res, next) => {
   const message = error.message;
   res.status(status).json({ message: message });
   next();
-})
+});
 
 app.listen(port, () => { console.log(`REST API listening on port: ${port}`) });

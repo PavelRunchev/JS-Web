@@ -1,0 +1,60 @@
+  <section class="actions">
+            <form action="/user/fill-amount" method="POST">
+                <h2>Salary time? Refill your account amount.</h2>
+                <input type="text" name="amount" id="refill-amount">
+                <button type="submit">Refill</button>
+            </form>
+            <div>
+                <h2>New expense comming up?</h2>
+                <a href="/expense/expense-create">Add it now</a>
+            </div>
+        </section>
+
+        <hr class="separator">
+
+    {{#if isExpenses}}
+        <table class="expenses">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Merchant</th>
+                    <th>Amount</th>
+                    <th>Category</th>
+                    <th>Description</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                {{#each expenses}}
+                <tr>
+                    <td>
+                        <img src="/images/date.png" />
+                        <p>{{dateFormat}}</p>
+                    </td>
+                    <td>
+                        <p>{{merchant}}</p>
+                        {{#if report}}
+                            <div class="report">
+                                <a href="/expense/expense-report/{{_id}}">Report</a>
+                            </div>
+                        {{/if}}
+                    </td>
+                    <td>
+                        <img src="/images/amount.png" alt="">
+                        <p>лв {{total}}</p>
+                    </td>
+                    <td>
+                        <img src="/images/category.png" alt="">
+                        <p>{{category}}</p>
+                    </td>
+                    <td>
+                        <img src="/images/hastag.png" alt="">
+                        <p>{{description}}</p>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    {{else}}
+		<h1 class="no-expenses">No expenses founded so far.. <span>GOOD JOB!</span></h1>
+    {{/if}}

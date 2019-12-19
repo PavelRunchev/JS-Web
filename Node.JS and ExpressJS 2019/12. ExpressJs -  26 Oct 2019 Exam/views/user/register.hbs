@@ -1,0 +1,24 @@
+ {{#if globalError}}
+    <section class="notifications">
+        <p class="notification-message">{{globalError}}</p>
+    </section>
+{{/if}}
+<form action="/user/register" method="POST">
+    <h1>Register</h1>
+
+    <p>Personal info</p>
+    <label for="usernmae">Username</label>
+    <input id="username" name="username" type="text" placeholder="JustMyself123..." value="{{user.username}}">
+
+    <label for="usernmae">Password</label>
+    <input id="password" name="password" type="password" placeholder="******" value="{{user.password}}">
+
+    <label for="repeat-password">Repeat Password</label>
+    <input id="repeat-password" name="repeatPass" type="password" placeholder="******" value="{{user.repeaPass}}">
+    <hr>
+    <p>Account</p>
+    <label for="usernmae">Amount</label>
+    <input id="username" name="amount" type="text" placeholder="$125.90" value="{{user.amount}}">
+
+    <button type="submit">Register</button>
+</form>

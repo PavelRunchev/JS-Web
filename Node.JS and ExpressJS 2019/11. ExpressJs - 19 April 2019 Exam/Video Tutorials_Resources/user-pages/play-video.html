@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Express Retake Exam January 2019</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="./../static/site.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand">Video Tutorials</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home </a>
+                    </li>
+
+                    <li class="nav-link">
+                        Welcome, Nakov
+                    </li>
+                    <li class="nav-item">
+                        <form id="logout-form" action="/user/logout" method="post"></form>
+                        <a class="nav-link" href="javascript:document.getElementById('logout-form').submit()">Logout</a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+
+        <main>
+            <div class="container">
+
+                <h1 class="my-4 text-center">Now playing : Routing
+                </h1>
+
+                <div class="row">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src=https://www.youtube.com/embed/tiMLxUKrB-g> </iframe>
+                    </div> 
+                </div> 
+
+                <h3 class="text-center">Lectures List</h3>
+                
+                <ul class="list-group">
+                    
+                <li class="list-group-item">
+                    <h5 class="mb-1">Conrollers</h5>
+                    <span class="float-right">
+                        <a href="#"><button class="btn btn-secondary">Play</button></a>
+                    </span>
+                </li>
+                
+                <li class="list-group-item">
+                    <h5 class="mb-1">Routing</h5>
+                    <span class="float-right">
+                        <a href="#"><button class="btn btn-secondary">Play</button></a>
+                    </span>
+                    
+                </li>
+                
+                <li class="list-group-item">
+                    <h5 class="mb-1">Achitecture</h5>
+                    <span class="float-right">
+                        <a href="#"><button class="btn btn-secondary">Play</button></a>
+                    </span>
+                </li>
+                
+            </ul>
+        </div>
+    </main>
+
+        <footer class="page-footer font-small">
+            <div class="footer-copyright text-center py-3">© 2019
+                <a href="https://softuni.bg/trainings/2255/expressjs-fundamentals-january-2019">Express Fundamentals</a>
+            </div>
+        </footer>
+
+    </div>
+</body>
+
+</html>

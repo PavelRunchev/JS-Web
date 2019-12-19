@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Express Retake Exam January 2019</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="/site.css" type="text/css" rel="stylesheet">
+    <link href="/global-errors/global-errors.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        {{> navigation}}
+        <main>
+            {{#if flash}}
+                {{#if flash.info}}
+                <h2 class="info-msg">{{flash.info}}</h2>
+                {{/if}}
+                {{#if flash.success}}
+                <h2 class="success-msg">{{flash.success}}</h2>
+                {{/if}}
+                {{#if flash.warning}}
+                <h2 class="warning-msg">{{flash.warning}}</h2>
+                {{/if}}
+                {{#if flash.danger}}
+                <h2 class="danger-msg">{{flash.danger}}</h2>
+                {{/if}}
+            {{/if}}
+        {{{body}}}
+        </main>
+
+       {{> footer}}
+
+    </div>
+</body>
+
+
+
+</html>
+
+
+
+
